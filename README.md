@@ -2,12 +2,12 @@
 
 A simple web app that allows you to take notes on the go
 
-# About this project
+## About this project
 
 My second attempt at making a web app using flask. Tried my best to implement all the best practices of Flask.
 Enjoy.
 
-# Notes
+## Notes
 
 This website was created using Flask. Flask is a lightweight `WSGI`_ web application framework. It is designed
 to make getting started quick and easy, with the ability to scale up to
@@ -38,7 +38,7 @@ Running the website:
     cd <path to the Notes-WebApp directory>
     python run.py [development | production]
 
-# Features
+## Features
 
 * WTForms for robust form validations
 * SQLAlchemy for robust Object Relational Mapper to database
