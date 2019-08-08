@@ -1,0 +1,15 @@
+
+
+
+<form method="POST" action="/login/">
+    {{ form.csrf_token }}
+    {{ form.username.label }}
+    <br>
+    {{ form.username(class='form-control no_borders') }}
+    <br>
+    {{ form.password.label }}
+    <br>
+    {{ form.password(class='form-control no_borders') }}
+    <br>
+    {{ form.submit(class='form-control btn btn-primary no_borders') }}
+</form> can use Username: <b>'test'</b> and Password: <b>123</b></h5>
