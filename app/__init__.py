@@ -28,7 +28,7 @@ def create_app(environment=None):
     """Factory method to create app instance"""
 
     app = Flask(__name__)
-    logging.basicConfig(filename='logs/blog.log', level=logging.DEBUG)
+    # logging.basicConfig(filename='logs/blog.log', level=logging.DEBUG)
 
     # development -> staging -> production -> testing
     if environment == 'testing':
@@ -41,8 +41,6 @@ def create_app(environment=None):
         app.config.from_object("config.DevelopmentConfig")
 
     db.init_app(app)
-    with app.app_context():
-        db.create_all()
 
     app.register_blueprint(auth.bp)
 
