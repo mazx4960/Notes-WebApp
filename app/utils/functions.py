@@ -11,7 +11,7 @@ Copyright (C) 2019 DesmondTan
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
-from app.models import db, User
+from app.models import db, User, Notes
 
 #############
 # Functions #
@@ -40,3 +40,9 @@ def check_user_exist(username, password):
     else:
         return False
 
+
+def get_notes(user_id):
+    """Returns a list of of the notes title written by the user"""
+
+    notes = Notes.query.filter(Notes.user_id == user_id).all()
+    return notes

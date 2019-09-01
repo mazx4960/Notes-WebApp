@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<nav class="navbar fixed-top navbar-light bg-light navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#"><h3>A Simple Notes App</h3></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavBar" aria-controls="myNavBar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="myNavBar">
+
+      <ul class="nav nav-pills ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Today</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/my_notes">My Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/add_notes">Add Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">View profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="jumbotron">
+    {% if username %}
+        {% if delete %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                Note deleted successfully
+            </div>
+        {% endif %}
+
+        <h1>Welcome, {{ username }}</h1>
+
+        {% if notes != [] %}
+            <input type="text" id="notes" class="form-control no_borders" autocomplete="off" name="notes" placeholder="Search Note">
+            <div style="padding-top: 20px">
+                <div id="result"></div>
+            </div>
+            <br>
+            <table class="table table-hover table-striped table-bordered" style="background-color: white;">
+                <thead class="text-center">
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th>Note Title</th>
+                        <th>Note Saved on</th>
+                        <th>Tags</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for note in notes %}
+                        <tr>
+                            <td class="text-center">{{ loop.index }}</td>
+                            <td> <a href="/notes/{{ note.id }}/">{{ note.title }}</a></td>
+                            <td>{{ note.date_created }}</td>
+                            <td></td>
+                            <td class="text-center">
+                                <a href="/notes/delete/{{ note.id }}/">delete</a>
+                            </td>
+                        </tr>
+                    {%  endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-danger">
+                You have no notes added! Let's add one <a href="/notes/add/">here</a>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+</div>
+
+{% endblock %}

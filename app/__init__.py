@@ -11,20 +11,71 @@ Copyright (C) 2019 DesmondTan
 from flask import Flask
 import logging
 
-from app.models import db
+from app.models import db, User, Notes
+
+from datetime import datetime
+from werkzeug.security import generate_password_hash
+import hashlib, base64
 
 ##############
 # Blueprints #
 ##############
 
-from app.views import auth
+from app.views import auth, notes
 
 ###########
 # Factory #
 ###########
 
 
-def create_app(environment=None):
+def init_db():
+    db.create_all()
+
+    test = User(
+        username='test',
+        email='test@example.com',
+        password_hash=generate_password_hash('password'),
+        date_created=datetime.now(),
+        last_login=datetime.now()
+    )
+    guest = User(
+        username='guest',
+        email='guest@example.com',
+        password_hash=generate_password_hash('password'),
+        date_created=datetime.now(),
+        last_login=datetime.now()
+    )
+
+    test_note = Notes(
+        user_id = 1,
+        title = 'This is a test note',
+        parent_subject = 'None',
+        notes_hash=(base64.b64encode(hashlib.md5(b'This is a test note').digest())).decode('ascii'),
+        date_created=datetime.now(),
+        last_edited=datetime.now(),
+        last_accessed=datetime.now()
+    )
+
+    guest_note = Notes(
+        user_id = 2,
+        title = 'This is a guest note',
+        parent_subject = 'None',
+        notes_hash=(base64.b64encode(hashlib.md5(b'This is a guest note').digest())).decode('ascii'),
+        date_created=datetime.now(),
+        last_edited=datetime.now(),
+        last_accessed=datetime.now()
+    )
+
+    db.session.add(test)
+    db.session.add(guest)
+
+    db.session.add(test_note)
+    db.session.add(guest_note)
+
+    db.session.commit()
+
+
+def create_app(environment=None, init=False):
     """Factory method to create app instance"""
 
     app = Flask(__name__)
@@ -42,6 +93,11 @@ def create_app(environment=None):
 
     db.init_app(app)
 
+    if init:
+        with app.app_context():
+            init_db()
+
     app.register_blueprint(auth.bp)
+    app.register_blueprint(notes.bp)
 
     return app

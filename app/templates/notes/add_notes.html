@@ -13,13 +13,13 @@
 
       <ul class="nav nav-pills ml-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="/">Today</a>
+          <a class="nav-link" href="/">Today</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/my_notes">My Notes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/add_notes">Add Notes</a>
+          <a class="nav-link active" href="/add_notes">Add Notes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/profile">View profile</a>
@@ -32,27 +32,5 @@
 
   </div>
 </nav>
-
-<div class="jumbotron">
-    <h1 class="display-4">Welcome back, {{ username }}</h1><br>
-    <p class="lead float-right">Date: <span id="date"></span></p>
-</div>
-
-<script>
-  function updateClock() {
-      var now = new Date(), // current date
-      months = ['January', 'February', 'March','April','May','June','July',
-                'August','September','October','November','December']; // you get the idea
-
-      // a cleaner way than string concatenation
-      date = [now.getDate(),
-              months[now.getMonth()],
-              now.getFullYear()].join(' ');
-
-      // set the content of the element with the ID time to the formatted string
-      document.getElementById('date').innerHTML = date;
-  }
-  updateClock();
-</script>
 
 {% endblock %}

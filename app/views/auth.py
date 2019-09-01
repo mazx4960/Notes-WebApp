@@ -39,7 +39,7 @@ def home_page():
                 'username'])
         return render_template('notes/homepage.html')
     except (KeyError, ValueError):
-        return render_template('notes/homepage.html')
+        return redirect('/login')
 
 
 @bp.route('/login/', methods=('GET', 'POST'))
@@ -54,8 +54,8 @@ def login():
 
         if user_id:
             session['username'] = username
-            session['id'] = user_id
-            return redirect('/profile/')
+            session['user_id'] = user_id
+            return redirect('/')
         else:
             flash('Username/Password Incorrect!')
     return render_template('auth/login.html', form=login_form)
@@ -77,7 +77,7 @@ def signup():
         session['username'] = username
         session['user_id'] = user_id
 
-        return redirect('/profile/')
+        return redirect('/')
 
     return render_template('auth/signup.html', form=signup_form)
 
@@ -87,5 +87,5 @@ def logout():
     """Logging out"""
 
     session['username'] = None
-    session['id'] = None
+    session['user_id'] = None
     return login()
