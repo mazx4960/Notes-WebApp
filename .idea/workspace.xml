@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8bbee56-5b6f-40d4-aed8-725a7731dc1a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/notes/add_notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/notes/add_notes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/notes/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/notes/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/notes/my_notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/notes/my_notes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,21 +45,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="966" />
-    <option name="y" value="23" />
-    <option name="width" value="954" />
-    <option name="height" value="987" />
-  </component>
   <component name="ProjectId" id="1QXRTh2UGbD9PXekn03kpIFuvjE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/env" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -103,7 +102,9 @@
       <workItem from="1565271453559" duration="84000" />
       <workItem from="1565271546550" duration="10121000" />
       <workItem from="1565447482954" duration="11324000" />
-      <workItem from="1567914969555" duration="524000" />
+      <workItem from="1567914969555" duration="2250000" />
+      <workItem from="1567917258412" duration="1751000" />
+      <workItem from="1568120692301" duration="4000" />
     </task>
     <servers />
   </component>
@@ -115,7 +116,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

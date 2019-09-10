@@ -21,7 +21,8 @@ import hashlib, base64
 # Blueprints #
 ##############
 
-from app.views import auth, notes
+from .main import main as main_blueprint
+from .auth import auth as auth_blueprint
 
 ###########
 # Factory #
@@ -97,7 +98,7 @@ def create_app(environment=None, init=False):
         with app.app_context():
             init_db()
 
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(notes.bp)
+    app.register_blueprint(main_blueprint)
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     return app

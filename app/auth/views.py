@@ -9,40 +9,21 @@ Copyright (C) 2019 DesmondTan
 ###########
 
 from flask import (
-    Blueprint, request, render_template,
-    redirect, session, flash
+    request, render_template, redirect, session, flash, url_for
 )
-from app.utils.forms import LoginForm, SignUpForm
-from app.utils.functions import generate_password_hash, datetime
-from app.utils.functions import add_new_user, check_user_exist
-from app.models import db, User
-
-
-############
-# Settings #
-############
-
-bp = Blueprint('auth', __name__)
+from . import auth
+from .forms import LoginForm, SignUpForm
+from ..utils.functions import generate_password_hash, datetime
+from ..utils.functions import add_new_user, check_user_exist
+from ..models import db, User
 
 
 #########
 # Views #
 #########
 
-@bp.route('/')
-def home_page():
-    """Home Page"""
 
-    try:
-        if session['username']:
-            return render_template('notes/homepage.html', username=session[
-                'username'])
-        return render_template('notes/homepage.html')
-    except (KeyError, ValueError):
-        return redirect('/login')
-
-
-@bp.route('/login/', methods=('GET', 'POST'))
+@auth.route('/login/', methods=('GET', 'POST'))
 def login():
     """Login Page"""
 
@@ -55,13 +36,13 @@ def login():
         if user_id:
             session['username'] = username
             session['user_id'] = user_id
-            return redirect('/')
+            return redirect(url_for('main.home_page'))
         else:
             flash('Username/Password Incorrect!')
     return render_template('auth/login.html', form=login_form)
 
 
-@bp.route('/signup/', methods=('GET', 'POST'))
+@auth.route('/signup/', methods=('GET', 'POST'))
 def signup():
     """Sign up page"""
 
@@ -77,12 +58,12 @@ def signup():
         session['username'] = username
         session['user_id'] = user_id
 
-        return redirect('/')
+        return redirect(url_for('main.home_page'))
 
     return render_template('auth/signup.html', form=signup_form)
 
 
-@bp.route("/logout/")
+@auth.route("/logout/")
 def logout():
     """Logging out"""
 
