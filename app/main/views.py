@@ -47,7 +47,7 @@ def my_notes():
 
 @main.route('/notes/add', methods=['GET','POST'])
 @login_required
-def add_notes():
+def add_note():
     """Adding Notes Page"""
 
     add_notes_form = AddNoteForm()
@@ -55,3 +55,11 @@ def add_notes():
         pass
 
     return render_template('main/add_notes.html', form=add_notes_form)
+
+
+@main.route('/profile')
+@login_required
+def profile():
+    """Profile Page"""
+
+    pass

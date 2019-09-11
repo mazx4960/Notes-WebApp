@@ -2,57 +2,29 @@
 
 {% block body %}
 
-<nav class="navbar fixed-top navbar-light bg-light navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="#"><h3>A Simple Notes App</h3></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavBar" aria-controls="myNavBar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="myNavBar">
-
-      <ul class="nav nav-pills ml-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="/">Today</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/my_notes">My Notes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/notes/add">Add Notes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">View profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/logout">Log Out</a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
-
 <div class="jumbotron">
     <h1 class="display-4">Welcome back, {{ username }}</h1><br>
     <p class="lead float-right">Date: <span id="date"></span></p>
 </div>
 
 <script>
-  function updateClock() {
-      var now = new Date(), // current date
-      months = ['January', 'February', 'March','April','May','June','July',
+    homelink = document.getElementById("home").childNodes[1];
+    homelink.className += " active";
+
+    function updateClock() {
+        var now = new Date(), // current date
+        months = ['January', 'February', 'March','April','May','June','July',
                 'August','September','October','November','December']; // you get the idea
 
-      // a cleaner way than string concatenation
-      date = [now.getDate(),
+        // a cleaner way than string concatenation
+        date = [now.getDate(),
               months[now.getMonth()],
               now.getFullYear()].join(' ');
 
-      // set the content of the element with the ID time to the formatted string
-      document.getElementById('date').innerHTML = date;
-  }
-  updateClock();
+        // set the content of the element with the ID time to the formatted string
+        document.getElementById('date').innerHTML = date;
+    }
+    updateClock();
 </script>
 
 {% endblock %}
