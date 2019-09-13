@@ -22,18 +22,21 @@ from ..models import db, User
 # Views #
 #########
 
-
 @main.route('/')
+def index():
+    """Home Page"""
+    try:
+        if session['username']:
+            return render_template('main/index.html', username=session['username'])
+    except (KeyError, ValueError):
+        return render_template('main/index.html', username=None)
+
+@main.route('/home')
+@login_required
 def home_page():
     """Home Page"""
 
-    try:
-        if session['username']:
-            return render_template('main/homepage.html', username=session[
-                'username'])
-        return render_template('main/homepage.html')
-    except (KeyError, ValueError):
-        return redirect(url_for('auth.login'))
+    return render_template('main/home_page.html', username=session['username'])
 
 
 @main.route('/my_notes')

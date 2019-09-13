@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8bbee56-5b6f-40d4-aed8-725a7731dc1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/main/add_notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/add_notes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/main/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/home_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/main/my_notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/my_notes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/decorators.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,15 +47,18 @@
   <component name="ProjectId" id="1QXRTh2UGbD9PXekn03kpIFuvjE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flasky-first-edition" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mazx\Documents\Projects\DT Projects\Notes-WebApp\app\templates\main" />
+      <recent name="C:\Users\Mazx\Documents\Projects\DT Projects\Notes-WebApp\app\static\js" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -105,7 +107,9 @@
       <workItem from="1567914969555" duration="2250000" />
       <workItem from="1567917258412" duration="1751000" />
       <workItem from="1568120692301" duration="4000" />
-      <workItem from="1568211403997" duration="6481000" />
+      <workItem from="1568211403997" duration="6628000" />
+      <workItem from="1568347919426" duration="177000" />
+      <workItem from="1568383641360" duration="14550000" />
     </task>
     <servers />
   </component>

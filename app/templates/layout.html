@@ -5,7 +5,7 @@
         <meta name="description" content="">
         <meta name="author" content="Desmond Tan">
 
-        <title>Blog</title>
+        <title>Nodes</title>
 
          <!-- Bootstrap core CSS -->
         <link rel='stylesheet' href="{{ url_for("static", filename="css/bootstrap.min.css") }}">
@@ -20,50 +20,73 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-            <a class="navbar-brand" href="#"><h3>A Simple Notes App</h3></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavBar" aria-controls="myNavBar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="container">
+                <a class="navbar-brand custom-control-inline" href="{{ url_for('main.index') }}">
+                    <h3>
+                        <span>
+                        <img alt="Icon"
+                             style="width: 24px; height: 24px"
+                             src="{{ url_for('static', filename='images/nodes_icon.png') }}">
+                        Nodes
+                        </span>
 
-            <div class="collapse navbar-collapse" id="myNavBar">
+                    </h3>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavBar" aria-controls="myNavBar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <ul class="nav nav-pills ml-auto">
-                    {% if username %}
-                        <li class="nav-item" id="home">
-                            <a class="nav-link" href="{{ url_for("main.home_page") }}">Today</a>
-                        </li>
-                        <li class="nav-item" id="notes">
-                            <a class="nav-link" href="{{ url_for("main.my_notes") }}">My Notes</a>
-                        </li>
-                        <li class="nav-item" id="addNote">
-                            <a class="nav-link" href="{{ url_for("main.add_note") }}">Add Note</a>
-                        </li>
-                        <li class="nav-item" id="profile">
-                            <a class="nav-link" href="{{ url_for("main.profile") }}">View profile</a>
-                        </li>
-                        <li class="nav-item" id="logout">
-                            <a class="nav-link" href="{{ url_for("auth.logout") }}">Log Out</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for("auth.signup") }}"> Sign Up </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for("auth.login") }}"> Login </a>
-                        </li>
-                    {% endif %}
-                </ul>
+                <div class="collapse navbar-collapse" id="myNavBar">
+
+                    <ul class="nav nav-pills ml-auto">
+                        {% if username %}
+                            <li class="nav-item" id="home">
+                                <a class="nav-link" href="{{ url_for("main.home_page") }}">Today</a>
+                            </li>
+                            <li class="nav-item" id="notes">
+                                <a class="nav-link" href="{{ url_for("main.my_notes") }}">My Notes</a>
+                            </li>
+                            <li class="nav-item" id="addNote">
+                                <a class="nav-link" href="{{ url_for("main.add_note") }}">Add Note</a>
+                            </li>
+                            <li class="nav-item" id="profile">
+                                <a class="nav-link" href="{{ url_for("main.profile") }}">View profile</a>
+                            </li>
+                            <li class="nav-item" id="logout">
+                                <a class="nav-link" href="{{ url_for("auth.logout") }}">Log Out</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for("auth.signup") }}"> Sign Up </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for("auth.login") }}"> Login </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-
         </nav>
 
         <main role="main">
             {% block body %}{% endblock %}
         </main>
 
-        <footer class="container">
-            <p>&copy; Desmond Tan 2019</p>
+        <div style="margin-bottom:5%;"></div>
+        <footer class="text-muted">
+            <div class="container">
+                <hr>
+                <p>
+                    <img alt="Icon"
+                         style="width: 24px; height: 24px"
+                         src="{{ url_for('static', filename='images/nodes_icon.png') }}">
+                    Nodes v1.0
+                </p>
+                <p>&copy; Desmond Tan 2019</p>
+            </div>
         </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     </body>
 </html>

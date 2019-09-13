@@ -21,7 +21,7 @@ def login_required(f):
     def wrap(*args, **kwargs):
         try:
             if not session['username']:
-                return redirect('/login/')
+                return redirect('/auth/login/')
             else:
                 return f(*args, **kwargs)
         except KeyError:

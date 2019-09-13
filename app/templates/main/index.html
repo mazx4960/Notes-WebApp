@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1><i><span class="comments"></span></i></h1><span class="typed-cursor"></span>
+        <h4 class="lead"><i> -Mazx</i></h4>
+        <p class="lead float-right">Date: <span id="date"></span></p>
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <h2>Features</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="card mb-3 box-shadow h-100">
+                <div style="padding-bottom:100%; overflow:hidden; position:relative">
+                    <img class="card-img-top"
+                         src="{{ url_for('static', filename='images/markdown_icon.jpg') }}"
+                         alt="Thumbnail"
+                         style="height: 100%; position: absolute">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Markdown</h4>
+                    <p class="card-text">
+                        With Markdown support, bold, italicize your text all you want
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card mb-3 box-shadow h-100">
+                <div style="padding-bottom:85%; padding-left: 15%; padding-right: 15%; padding-top: 15%; overflow:hidden; position:relative">
+                    <img class="card-img-top"
+                         src="{{ url_for('static', filename='images/folder_icon.png') }}"
+                         alt="Thumbnail"
+                         style="height: 70%; width: 70%; position: absolute">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Folders</h4>
+                    <p class="card-text">
+                        Group your files in folders and keep your work organised
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card mb-3 box-shadow h-100">
+                <div style="padding-bottom:100%; overflow:hidden; position:relative">
+                    <img class="card-img-top"
+                         src="{{ url_for('static', filename='images/bootstrap_logo.png') }}"
+                         alt="Thumbnail" style="height: 100%; position: absolute">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Powerful Frameworks</h4>
+                    <p class="card-text">
+                        All designed with bootstrap and flask
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card mb-3 box-shadow h-100">
+                <div style="padding-bottom:100%; overflow:hidden; position:relative">
+                    <img class="card-img-top"
+                         src="{{ url_for('static', filename='images/lock_icon.jpg') }}"
+                         alt="Thumbnail" style="height: 100%; position: absolute">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Security</h4>
+                    <p class="card-text">
+                        Robust security features to ensure that your notes are always safe with us
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/typed.min.js') }}"></script>
+<script>
+    {% if username %}
+        homelink = document.getElementById("home").childNodes[1];
+        homelink.className += " active";
+    {% endif %}
+
+    var comments = new Typed('.comments', {
+               strings: ["'The only notes site you'll ever need'",
+                         "'Truly Marvellous'",
+                         "'Breath-taking'"],
+               typeSpeed: 200,
+               backSpeed: 100,
+               smartBackspace: true, // this is a default
+               loop: true,
+             });
+
+    function updateClock() {
+        var now = new Date(), // current date
+        months = ['January', 'February', 'March','April','May','June','July',
+                'August','September','October','November','December']; // you get the idea
+
+        // a cleaner way than string concatenation
+        date = [now.getDate(),
+              months[now.getMonth()],
+              now.getFullYear()].join(' ');
+
+        // set the content of the element with the ID time to the formatted string
+        document.getElementById('date').innerHTML = date;
+    }
+    updateClock();
+</script>
+
+{% endblock %}
