@@ -34,19 +34,73 @@ class User(db.Model):
         return '<User {}>'.format(self.username)
 
 
+class Followers(db.Model):
+    """Model for followers"""
+
+    __tablename__ = 'followers'
+
+    id = db.Column(db.Integer, primary_key=True)
+    date_followed = db.Column(db.String(32))
+    follower = db.Column(db.Integer)  # follower is the user who is following
+    followed = db.Column(db.Integer)  # followed is the user who is being followed
+
+    def __repr__(self):
+        return '<Follower_id {}>'.format(self.id)
+
+
 class Notes(db.Model):
     """Model for notes"""
 
     __tablename__ = 'notes'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
-    title = db.Column(db.String(255))
-    parent_subject = db.Column(db.String(255))
-    notes_hash = db.Column(db.String(100))
     date_created = db.Column(db.String(32))
     last_edited = db.Column(db.String(32))
-    last_accessed = db.Column(db.String(32))
+    private = db.Column(db.Boolean)
+    title = db.Column(db.String(255))
+    body = db.Column(db.String(255))
+    body_markdown = db.Column(db.String(255))
+    user_id = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Note {}>'.format(self.title)
+
+
+class Notes_Permissions(db.Model):
+    """Model for notes permissions"""
+
+    __tablename__ = 'notes_permissions'
+
+    id = db.Column(db.Integer, primary_key=True)
+    date_shared = db.Column(db.String(32))
+    note_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<Note_permission {}>'.format(self.id)
+
+
+class Notes_tag(db.Model):
+    """Model for tags of notes"""
+
+    __tablename__ = 'notes_tag'
+
+    id = db.Column(db.Integer, primary_key=True)
+    note_id = db.Column(db.Integer)
+    tag_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<Notes_tag {}>'.format(self.id)
+
+
+class Tags(db.Model):
+    """Model for notes permissions"""
+
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer) # to record down who started the tag
+    tag = db.Column(db.String(255))
+
+    def __repr__(self):
+        return '<Note_permission {}>'.format(self.id)

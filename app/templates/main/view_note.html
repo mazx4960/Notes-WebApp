@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <div class="container">
+    {% if username %}
+        <div class="row" style="padding-top: 2%">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>Note Details:</b></h3>
+                        <p class="card-text">
+                            <h6><b>Note Added on:</b>  {{ note.date_created }}</h6>
+                            <h6><b>Note Updated on:</b>  {{ note.last_edited }}</h6>
+                            <h6><b>Private:</b>  {{ note.private }}</h6>
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- ./column -->
+
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="card mb-8 box-shadow">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>Note Title: </b>{{ note.title }}</h3>
+
+                        <a href="/notes/edit/{{ note.id }}/" class="pull-left">
+                            <button type="button" class="btn btn-info">
+                                <span class="glyphicon glyphicon-edit"></span> Edit
+                            </button>
+                        </a>
+                        <a href="/notes/delete/{{ note.id }}/" class="pull-right">
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span> Delete
+                            </button>
+                        </a>
+                        <p class="card-text">
+                            {{ note.body_markdown }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</div>
+
+<script>
+    homelink = document.getElementById("notes").childNodes[1];
+    homelink.className += " active";
+</script>
+
+{% endblock %}

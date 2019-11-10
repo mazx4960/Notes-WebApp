@@ -11,7 +11,10 @@ Copyright (C) 2019 DesmondTan
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
-from app.models import db, User, Notes
+from app.models import db
+from app.models import User, Followers, Notes, Notes_Permissions, Notes_tag, Tags
+
+from sqlalchemy import and_
 
 #############
 # Functions #
@@ -46,3 +49,31 @@ def get_notes(user_id):
 
     notes = Notes.query.filter(Notes.user_id == user_id).all()
     return notes
+
+
+def validate_access_to_note(note_id, user_id):
+    """Check if a particular user has access to the note"""
+
+    note = Notes.query.filter(Notes.id == note_id).first()
+
+    if note is None:
+        return False
+
+    if note.private:
+        note_permission = Notes_Permissions.query.filter(
+            and_(
+                Notes_Permissions.note_id==note_id,
+                Notes_Permissions.user_id==user_id
+            )
+        ).all()
+        if note_permission is None:
+            return False
+
+    return True
+
+
+def get_note_by_id(note_id):
+    """Get the notes data"""
+
+    note = Notes.query.filter(Notes.id == note_id).first()
+    return note

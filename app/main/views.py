@@ -12,9 +12,10 @@ from flask import (
     request, render_template, redirect, session, flash, url_for
 )
 from . import main
+from .forms import AddNoteForm
 from ..utils.decorators import login_required
 from ..utils.functions import generate_password_hash, datetime
-from ..utils.functions import get_notes
+from ..utils.functions import get_notes, get_note_by_id, validate_access_to_note
 from ..models import db, User
 
 
@@ -28,6 +29,7 @@ def index():
     try:
         if session['username']:
             return render_template('main/index.html', username=session['username'])
+        return render_template('main/index.html', username=None)
     except (KeyError, ValueError):
         return render_template('main/index.html', username=None)
 
@@ -48,6 +50,19 @@ def my_notes():
     return render_template('main/my_notes.html', notes=notes, username=session['username'])
 
 
+@main.route("/notes/<note_id>/")
+@login_required
+def view_note(note_id):
+    '''
+        App for viewing a specific note
+    '''
+    if validate_access_to_note(note_id, session['user_id']):
+        note = get_note_by_id(note_id)
+        return render_template('main/view_note.html', note=note, username=session['username'])
+    else:
+        return render_template('errors/401.html')
+
+
 @main.route('/notes/add', methods=['GET','POST'])
 @login_required
 def add_note():
@@ -57,7 +72,7 @@ def add_note():
     if add_notes_form.validate_on_submit():
         pass
 
-    return render_template('main/add_notes.html', form=add_notes_form)
+    return render_template('main/add_notes.html', form=add_notes_form, username=session['username'])
 
 
 @main.route('/profile')
@@ -65,4 +80,4 @@ def add_note():
 def profile():
     """Profile Page"""
 
-    pass
+    return render_template('main/profile.html', username=session['username'])

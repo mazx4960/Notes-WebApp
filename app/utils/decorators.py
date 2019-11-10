@@ -25,5 +25,5 @@ def login_required(f):
             else:
                 return f(*args, **kwargs)
         except KeyError:
-            return redirect('/login/')
+            return redirect('/auth/login/')
     return wrap
