@@ -35,7 +35,7 @@
                         <tr>
                             <td class="text-center">{{ loop.index }}</td>
                             <td> <a href="/notes/{{ note.id }}/">{{ note.title }}</a></td>
-                            <td>{{ note.date_created }}</td>
+                            <td>{{ note.date_created | datetimeformat }}</td>
                             <td></td>
                             <td class="text-center">
                                 <a href="/notes/delete/{{ note.id }}/">delete</a>

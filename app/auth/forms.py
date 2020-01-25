@@ -63,3 +63,9 @@ class SignUpForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+    def validate_password_complexity(self, password):
+        """Check that password is complex enough"""
+
+        # TODO: add password complexity validation
+        pass

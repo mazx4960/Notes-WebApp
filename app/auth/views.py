@@ -36,7 +36,8 @@ def login():
         if user_id:
             session['username'] = username
             session['user_id'] = user_id
-            return redirect(url_for('main.home_page'))
+            # TODO: add cookies to user's browser
+            return redirect(url_for('main.today'))
         else:
             flash('Username/Password Incorrect!')
     return render_template('auth/login.html', form=login_form)
@@ -52,13 +53,15 @@ def signup():
         password_hash = generate_password_hash(request.form['password'])
         email = request.form['email']
         date_created = datetime.now()
+        # TODO: use a web token to verify his email before adding him
         add_new_user(username, email, password_hash, date_created)
 
         user_id = check_user_exist(username, password_hash)
         session['username'] = username
         session['user_id'] = user_id
+        # TODO: add cookies to user's browser
 
-        return redirect(url_for('main.home_page'))
+        return redirect(url_for('main.today'))
 
     return render_template('auth/signup.html', form=signup_form)
 

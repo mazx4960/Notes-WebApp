@@ -8,7 +8,7 @@ Copyright (C) 2019 DesmondTan
 # Imports #
 ###########
 
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, session
 from . import main
 
 
@@ -17,14 +17,14 @@ from . import main
 ###################
 
 
-@main.app_errorhandler(401)
+@main.app_errorhandler(403)
 def forbidden(e):
     if request.accept_mimetypes.accept_json and \
             not request.accept_mimetypes.accept_html:
         response = jsonify({'error': 'forbidden'})
         response.status_code = 403
         return response
-    return render_template('errors/401.html'), 403
+    return render_template('errors/403.html', username=session['username']), 403
 
 
 @main.app_errorhandler(404)

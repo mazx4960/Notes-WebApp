@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1 class="display-4"><i>Welcome back, {{ username }}</i></h1><br>
+        <p class="lead float-right">Date: <span id="date"></span></p>
+    </div>
+</div>
+
+
+
+<script src="{{ url_for('static', filename='js/typed.min.js') }}"></script>
+<script>
+    todaylink = document.getElementById("today").childNodes[1];
+    todaylink.className += " active";
+
+    function updateClock() {
+        var now = new Date(), // current date
+        months = ['January', 'February', 'March','April','May','June','July',
+                'August','September','October','November','December']; // you get the idea
+
+        // a cleaner way than string concatenation
+        date = [now.getDate(),
+              months[now.getMonth()],
+              now.getFullYear()].join(' ');
+
+        // set the content of the element with the ID time to the formatted string
+        document.getElementById('date').innerHTML = date;
+    }
+    updateClock();
+</script>
+
+{% endblock %}

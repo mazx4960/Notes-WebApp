@@ -9,8 +9,9 @@ Copyright (C) 2019 DesmondTan
 ###########
 
 from flask_wtf import FlaskForm
+from flask_pagedown.fields import PageDownField
 from wtforms.fields.html5 import EmailField
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, RadioField, SelectField
 from wtforms.validators import required, equal_to, length, ValidationError
 from wtforms.validators import Email
 
@@ -24,42 +25,9 @@ from app.models import User
 class AddNoteForm(FlaskForm):
     """Add Note Form"""
 
-    username = StringField("Username*", [required('Please enter your '
-                                                  'username')])
-    password = PasswordField("Password*", [required('Please enter your '
-                                                    'password')])
-    submit = SubmitField('Login')
-
-
-class SignUpForm(FlaskForm):
-    """Sign Up Form"""
-
-    username = StringField("Username*", [required('Please enter your '
-                                                  'username')])
-    email = EmailField("Email*", [
-        required('Please enter your email'),
-        Email(message='Please enter a valid email')
-    ])
-    password = PasswordField("Password*", [
-        required('Please enter a password'),
-        length(min=8, message='Password too short'),
-        equal_to(fieldname='confirm_password', message='Password must match')
-    ])
-    confirm_password = PasswordField("Confirm Password*", [
-        required('Please confirm your password')
-    ])
-    submit = SubmitField('Sign Up')
-
-    def validate_username(self, username):
-        """Check username does not already exist"""
-
-        user = User.query.filter_by(username=username.data).first()
-        if user is not None:
-            raise ValidationError('Username is taken.')
-
-    def validate_email(self, email):
-        """Check if email is not already being used"""
-
-        user = User.query.filter_by(email=email.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different email address.')
+    title = StringField('Note Title:', [required("Please enter a note title.")])
+    note = PageDownField('Your Note:', [required('Please enter notes contents')])
+    # tags = SelectMultipleField('Note Tags:')
+    private = RadioField('Private:', choices=[('on', 'on'), ('off', 'off')])
+    folder = SelectField('Folder:', choices=[('0', 'All')], default=('0', 'All'))
+    submit = SubmitField('Add Note')

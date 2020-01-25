@@ -9,7 +9,7 @@ Copyright (C) 2019 DesmondTan
 ###########
 
 from app.models import db
-from app.models import User, Followers, Notes, Notes_Permissions, Notes_tag, Tags
+from app.models import User, Followers, Notes, Folders, Notes_Permissions, Notes_tag, Tags
 
 from datetime import datetime
 from werkzeug.security import generate_password_hash
@@ -17,6 +17,9 @@ from werkzeug.security import generate_password_hash
 
 def init_db():
     db.create_all()
+
+
+def add_sample_data():
 
     ################# Users #################
 
@@ -46,6 +49,8 @@ def init_db():
     db.session.add(guest)
     db.session.add(mazx)
 
+    db.session.commit()
+
     ################# Followers #################
 
     test_follow_guest = Followers(
@@ -56,12 +61,15 @@ def init_db():
 
     db.session.add(test_follow_guest)
 
+    db.session.commit()
+
     ################# Notes #################
 
     test_note = Notes(
         date_created=datetime.now(),
         last_edited=datetime.now(),
         private=True,
+        parent_folder_id=0,
         title='This is a test note',
         body='This is a test content',
         body_markdown='This is a test content',
@@ -72,6 +80,7 @@ def init_db():
         date_created=datetime.now(),
         last_edited=datetime.now(),
         private=False,
+        parent_folder_id=0,
         title='This is a guest note',
         body='This is a guest content',
         body_markdown='This is a guest content',
@@ -80,6 +89,25 @@ def init_db():
 
     db.session.add(test_note)
     db.session.add(guest_note)
+
+    db.session.commit()
+
+    ################# Folders #################
+
+    test_folder = Folders(
+        folder_name='test_folder',
+        user_id=1
+    )
+
+    guest_folder = Folders(
+        folder_name='guest_folder',
+        user_id=2
+    )
+
+    db.session.add(test_folder)
+    db.session.add(guest_folder)
+
+    db.session.commit()
 
     ################# Notes_Permissions #################
 
@@ -90,6 +118,8 @@ def init_db():
     )
 
     db.session.add(test_note_allow_mazx)
+
+    db.session.commit()
 
     ################# Notes_tag #################
 
@@ -106,6 +136,8 @@ def init_db():
     db.session.add(test_note_test_tag)
     db.session.add(guest_note_guest_tag)
 
+    db.session.commit()
+
     ################# Tags #################
 
     test_tag = Tags(
@@ -120,7 +152,5 @@ def init_db():
 
     db.session.add(test_tag)
     db.session.add(guest_tag)
-
-    ################# Commit data #################
 
     db.session.commit()

@@ -57,6 +57,7 @@ class Notes(db.Model):
     date_created = db.Column(db.String(32))
     last_edited = db.Column(db.String(32))
     private = db.Column(db.Boolean)
+    parent_folder_id = db.Column(db.Integer)
     title = db.Column(db.String(255))
     body = db.Column(db.String(255))
     body_markdown = db.Column(db.String(255))
@@ -64,6 +65,19 @@ class Notes(db.Model):
 
     def __repr__(self):
         return '<Note {}>'.format(self.title)
+
+
+class Folders(db.Model):
+    """Model for Folder Names"""
+
+    __tablename__ = 'folders'
+
+    id = db.Column(db.Integer, primary_key=True)
+    folder_name = db.Column(db.String(255))
+    user_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<Folder {}>'.format(self.folder_name)
 
 
 class Notes_Permissions(db.Model):

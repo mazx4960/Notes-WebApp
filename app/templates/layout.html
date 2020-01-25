@@ -40,8 +40,11 @@
 
                     <ul class="nav nav-pills ml-auto">
                         {% if username %}
+                            <li class="nav-item" id="today">
+                                <a class="nav-link" href="{{ url_for("main.today") }}">Today</a>
+                            </li>
                             <li class="nav-item" id="home">
-                                <a class="nav-link" href="{{ url_for("main.home_page") }}">Today</a>
+                                <a class="nav-link" href="{{ url_for("main.home_page") }}">Home</a>
                             </li>
                             <li class="nav-item" id="notes">
                                 <a class="nav-link" href="{{ url_for("main.my_notes") }}">My Notes</a>

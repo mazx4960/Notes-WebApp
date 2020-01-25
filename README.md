@@ -42,3 +42,9 @@ Running the website:
 
 * WTForms for robust form validations
 * SQLAlchemy for robust Object Relational Mapper to database
+
+* Home page which displays: word of the day, news articles, as well as notes of 
+other people that are either public or shared with you
+* Starring function to save a particular note
+* Folders to organize notes for easier access
+
