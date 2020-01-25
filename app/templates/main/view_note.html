@@ -11,8 +11,8 @@
                     <div class="card-body">
                         <h3 class="card-title"><b>Note Details:</b></h3>
                         <p class="card-text">
-                            <h6><b>Note Added on:</b>  {{ note.date_created }}</h6>
-                            <h6><b>Note Updated on:</b>  {{ note.last_edited }}</h6>
+                            <h6><b>Note Added on:</b><br>{{ note.date_created | datetimeformat }}</h6>
+                            <h6><b>Note Updated on:</b><br>{{ note.last_edited | datetimeformat }}</h6>
                             <h6><b>Private:</b>  {{ note.private }}</h6>
                         </p>
                     </div>

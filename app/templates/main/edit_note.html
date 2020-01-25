@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <div class="container">
+        {% for message in form.title.errors %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.note.errors %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        <form action="{{ url_for("main.edit_note", note_id=note_id) }}" method="POST">
+            {{ form.csrf_token }}
+            <div class="row" style="padding-top: 2%">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+                            <h3 class="card-title"><b>Note Details:</b></h3>
+                            <p class="card-text">
+                                <h6><b>{{ form.private.label }}</b>{{ form.private }}</h6>
+                            </p>
+                            <p class="card-text">
+                                <h3>{{ form.folder.label }}</h3>
+                                <br>
+                                {{ form.folder(class='form-control no-borders') }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- ./column -->
+
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="card mb-8 box-shadow">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <b>{{ form.title.label }}</b>
+                                {{ form.title(class='form-control no-borders') }}
+                            </h3>
+
+                            <p class="card-text">
+                                <b>{{ form.note.label }}</b>
+                                {{ form.note(class='form-control no-borders') }}
+                            </p>
+                        </div>
+                    </div>
+                    {{ form.submit(class='btn btn-primary') }}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    homelink = document.getElementById("addNote").childNodes[1];
+    homelink.className += " active";
+</script>
+
+{% endblock %}
+

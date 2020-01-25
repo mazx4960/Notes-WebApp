@@ -56,12 +56,23 @@ def add_new_note(private, parent_folder_id, title, body, user_id):
 """ ############# Updating or deleting from database ############# """
 
 
-def delete_note(note_id):
-    pass
+def delete_note_by_id(note_id):
+    note = Notes.query.filter(Notes.id == note_id).first()
+
+    db.session.delete(note)
+    db.session.commit()
 
 
-def update_note(note_id):
-    pass
+def update_note(note_id, private, parent_folder_id, title, body):
+    note = Notes.query.filter(Notes.id == note_id).first()
+
+    note.private = private
+    note.parent_folder_id = parent_folder_id
+    note.title = title
+    note.body = body
+    note.last_edited = datetime.now()
+
+    db.session.commit()
 
 
 """ ############# Retrieving from database ############# """

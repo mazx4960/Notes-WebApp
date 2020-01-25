@@ -18,7 +18,7 @@ from .forms import AddNoteForm
 
 from ..utils.decorators import login_required
 from ..utils.functions import (
-    add_new_note, get_notes, get_note_by_id, validate_access_to_note, get_folder_names_ids
+    add_new_note, update_note, delete_note_by_id, get_notes, get_note_by_id, validate_access_to_note, get_folder_names_ids
 )
 
 
@@ -66,6 +66,7 @@ def my_notes():
     """Notes Page"""
 
     notes = get_notes(session['user_id'])
+    notes.sort(key=lambda note: note.last_edited, reverse=True)
     return render_template('main/my_notes.html', notes=notes, username=session['username'])
 
 
@@ -103,28 +104,48 @@ def add_note():
     return render_template('main/add_notes.html', form=add_note_form, username=session['username'])
 
 
-@main.route('/notes/edit/<note_id>', methods=['GET', 'POST'])
+@main.route('/notes/edit/<note_id>/', methods=['GET', 'POST'])
 @login_required
 def edit_note(note_id):
     """Edit note page"""
 
-    pass
+    edit_note_form = AddNoteForm()
+
+    note = get_note_by_id(note_id)
+
+    user_folders = get_folder_names_ids(session['user_id'])
+    edit_note_form.folder.choices += user_folders
+
+    edit_note_form.private.default = note.private
+    edit_note_form.note.data = note.body
+    edit_note_form.title.data = note.title
+
+    if edit_note_form.validate_on_submit():
+        folder_id = int(request.form['folder'])
+        title = request.form['title']
+        note_markdown = request.form['note']
+        private = True if request.form['private'] == 'on' else False
+
+        update_note(note_id, private, folder_id, title, note_markdown)
+        return redirect(url_for('main.my_notes'))
+
+    return render_template('main/edit_note.html', form=edit_note_form, note_id=note_id, username=session['username'])
 
 
-@main.route('/notes/delete/<note_id>')
+@main.route('/notes/delete/<note_id>/')
 @login_required
 def delete_note(note_id):
     """Delete note page"""
 
     # You can only delete notes that you create !!
     note = get_note_by_id(note_id)
-    if note == None:
+    if note is None:
         return abort(404)
-    elif note.user_id == session['user_id']:
-
-        return render_template('main/delete_note.html')
+    elif note.user_id != session['user_id']:
+        return abort(403)
     else:
-        abort(403)
+        delete_note_by_id(note_id)
+        return my_notes()
 
 
 @main.route('/profile')
