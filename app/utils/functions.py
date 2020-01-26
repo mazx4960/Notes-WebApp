@@ -78,6 +78,45 @@ def update_note(note_id, private, parent_folder_id, title, body):
 """ ############# Retrieving from database ############# """
 
 
+def get_search_result(search, category, user_id):
+    """Getting the result based on the search term and category"""
+
+    if category == 'Users':
+        users = get_users_by_name(search)
+        return users
+    elif category == 'Notes':
+        # The note must either be yours or public
+        notes = get_notes_by_title(search)
+        sieved_notes = sieve_public_notes(notes, user_id)
+        return sieved_notes
+    return []
+
+
+def sieve_public_notes(notes, user_id):
+    """Getting all notes that are public or yours or (shared with you)"""
+
+    sieved_notes = []
+    for note in notes:
+        if not note.private:
+            sieved_notes.append(note)
+        elif note.user_id == user_id:
+            sieved_notes.append(note)
+    return sieved_notes
+
+
+def get_users_by_name(username):
+    """Getting all the users with username or has username as a substring"""
+
+    users = User.query.filter(User.username.contains(username)).all()
+    return list(users)
+
+
+def get_notes_by_title(title):
+    """Getting all the notes with title or has title as a substring"""
+    notes = Notes.query.filter(Notes.title.contains(title)).all()
+    return list(notes)
+
+
 def get_note_by_id(note_id):
     """Get the notes data"""
 

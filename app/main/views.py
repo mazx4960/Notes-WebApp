@@ -14,11 +14,12 @@ from flask import (
     request, render_template, redirect, session, flash, url_for, abort
 )
 
-from .forms import AddNoteForm
+from .forms import AddNoteForm, SearchForm
 
 from ..utils.decorators import login_required
 from ..utils.functions import (
-    add_new_note, update_note, delete_note_by_id, get_notes, get_note_by_id, validate_access_to_note, get_folder_names_ids
+    add_new_note, update_note, delete_note_by_id, get_notes, get_note_by_id,
+    validate_access_to_note, get_folder_names_ids, get_search_result
 )
 
 
@@ -60,14 +61,37 @@ def home_page():
     return render_template('main/home_page.html', username=session['username'])
 
 
-@main.route('/my_notes')
+@main.route('/my_notes', methods=['GET', 'POST'])
 @login_required
 def my_notes():
     """Notes Page"""
 
+    search_form = SearchForm()
+
+    if search_form.validate_on_submit():
+        search = request.form['search']
+        category = request.form['category']
+        return redirect(url_for('main.search_results', search=search, category=category))
+
     notes = get_notes(session['user_id'])
     notes.sort(key=lambda note: note.last_edited, reverse=True)
-    return render_template('main/my_notes.html', notes=notes, username=session['username'])
+    return render_template('main/my_notes.html', form=search_form, notes=notes, username=session['username'])
+
+
+@main.route('/search_results/?search=<search>&category=<category>')
+@login_required
+def search_results(search, category):
+    """Search results Page"""
+
+    search_form = SearchForm()
+
+    results = get_search_result(search, category, session['user_id'])
+
+    return render_template('main/search_results.html',
+                           form=search_form,
+                           results=results,
+                           category=category,
+                           username=session['username'])
 
 
 @main.route("/notes/<note_id>/")
@@ -115,8 +139,6 @@ def edit_note(note_id):
 
     user_folders = get_folder_names_ids(session['user_id'])
     edit_note_form.folder.choices += user_folders
-
-    edit_note_form.private.default = note.private
     edit_note_form.note.data = note.body
     edit_note_form.title.data = note.title
 

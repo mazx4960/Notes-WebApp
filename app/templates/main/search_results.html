@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <div class="container">
+    {% if username %}
+        {% if delete %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                Note deleted successfully
+            </div>
+        {% endif %}
+
+        <h1>Your Search Results: </h1><br>
+
+        <form action="{{ url_for("main.my_notes") }}" method="POST">
+            {{ form.csrf_token }}
+            <div class="form-row" style="padding: 2%">
+                <div class="form-group col-md-10">
+                    {{ form.search(class="form-control no_borders", placeholder="Search Note/Users") }}
+                </div>
+                <div class="form-group col-md-2">
+                    {{ form.category(class="form-control no_borders") }}
+                </div>
+            </div>
+            <input type="submit" style="height: 0; width: 0; border: none; padding: 0;" hidefocus="true">
+        </form>
+
+        {% if results != [] %}
+            {% if category == 'Notes' %}
+                <table class="table table-hover table-striped table-bordered" style="background-color: white;">
+                    <thead class="text-center">
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Note Title</th>
+                            <th>Note Saved on</th>
+                            <th>Tags</th>
+                            <th class="text-center">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td class="text-center">{{ loop.index }}</td>
+                                <td> <a href="/notes/{{ result.id }}/">{{ result.title }}</a></td>
+                                <td>{{ result.last_edited | datetimeformat }}</td>
+                                <td></td>
+                                <td class="text-center">
+                                    <a href="/notes/delete/{{ result.id }}/">delete</a>
+                                </td>
+                            </tr>
+                        {%  endfor %}
+                    </tbody>
+                </table>
+            {% elif  category == 'Users' %}
+                <table class="table table-hover table-striped table-bordered" style="background-color: white;">
+                    <thead class="text-center">
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td class="text-center">{{ loop.index }}</td>
+                                <td>{{ result.username }}</td>
+                            </tr>
+                        {%  endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        {% else %}
+            <div class="alert alert-danger">
+                No results found
+            </div>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+
+<script>
+    homelink = document.getElementById("notes").childNodes[1];
+    homelink.className += " active";
+</script>
+
+{% endblock %}

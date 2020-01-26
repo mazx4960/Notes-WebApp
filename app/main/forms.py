@@ -26,8 +26,19 @@ class AddNoteForm(FlaskForm):
     """Add Note Form"""
 
     title = StringField('Note Title:', [required("Please enter a note title.")])
-    note = PageDownField('Your Note:', [required('Please enter notes contents')])
+    note = PageDownField('Your Note:', [required('Please enter notes contents.')])
     # tags = SelectMultipleField('Note Tags:')
     private = RadioField('Private:', choices=[('on', 'on'), ('off', 'off')])
     folder = SelectField('Folder:', choices=[('0', 'All')], default=('0', 'All'))
     submit = SubmitField('Add Note')
+
+
+class SearchForm(FlaskForm):
+    """Search notes and users form"""
+    choices = [
+        ('Users', 'Users'),
+        ('Notes', 'Notes')
+    ]
+
+    search = StringField("Search Note/Users", [required("Unable to search empty string.")])
+    category = SelectField('Category', choices=choices)

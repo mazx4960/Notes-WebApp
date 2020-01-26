@@ -14,12 +14,20 @@
 
         <h1>Welcome, {{ username }}</h1><br>
 
-        {% if notes != [] %}
-            <input type="text" id="search" class="form-control no_borders" autocomplete="off" placeholder="Search Note/Users">
-            <div style="padding-top: 20px">
-                <div id="result"></div>
+        <form action="{{ url_for("main.my_notes") }}" method="POST">
+            {{ form.csrf_token }}
+            <div class="form-row" style="padding: 2%">
+                <div class="form-group col-md-10">
+                    {{ form.search(class="form-control no_borders", placeholder="Search Note/Users") }}
+                </div>
+                <div class="form-group col-md-2">
+                    {{ form.category(class="form-control no_borders") }}
+                </div>
             </div>
-            <br>
+            <input type="submit" style="height: 0; width: 0; border: none; padding: 0;" hidefocus="true">
+        </form>
+
+        {% if notes != [] %}
             <table class="table table-hover table-striped table-bordered" style="background-color: white;">
                 <thead class="text-center">
                     <tr>
