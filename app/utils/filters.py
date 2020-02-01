@@ -14,6 +14,7 @@ from datetime import datetime
 # Filters #
 ###########
 
-def datetimeformat(value, format="%m %b %Y, %I:%M %p"):
+
+def datetimeformat(value, format="%d %b %Y, %I:%M %p"):
     datetime_obj = datetime.strptime(value, '%Y-%m-%d %H:%M:%S.%f')
     return datetime_obj.strftime(format)

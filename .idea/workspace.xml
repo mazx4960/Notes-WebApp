@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8bbee56-5b6f-40d4-aed8-725a7731dc1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/templates/main/search_results.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/notes.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/main/my_notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/my_notes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main/view_note.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/view_note.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +34,9 @@
       </path>
     </expand>
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Notes-WebApp" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -119,7 +123,8 @@
       <workItem from="1579857707023" duration="5232000" />
       <workItem from="1579922394478" duration="10528000" />
       <workItem from="1579969007327" duration="6108000" />
-      <workItem from="1580048746797" duration="5213000" />
+      <workItem from="1580048746797" duration="5394000" />
+      <workItem from="1580474070340" duration="5845000" />
     </task>
     <servers />
   </component>
@@ -149,9 +154,13 @@
     </state>
     <state x="221" y="48" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1579969442555" />
     <state x="221" y="66" key="SettingsEditor/0.23.1440.808@0.23.1440.808" timestamp="1579969184363" />
-    <state x="397" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1580048747416">
+    <state x="397" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1580474076913">
       <screen x="0" y="23" width="1440" height="808" />
     </state>
-    <state x="397" y="259" key="com.intellij.ide.util.TipDialog/0.23.1440.808@0.23.1440.808" timestamp="1580048747416" />
+    <state x="397" y="259" key="com.intellij.ide.util.TipDialog/0.23.1440.808@0.23.1440.808" timestamp="1580474076913" />
+    <state x="385" y="155" width="670" height="676" key="search.everywhere.popup" timestamp="1580474082963">
+      <screen x="0" y="23" width="1440" height="808" />
+    </state>
+    <state x="385" y="155" width="670" height="676" key="search.everywhere.popup/0.23.1440.808@0.23.1440.808" timestamp="1580474082963" />
   </component>
 </project>

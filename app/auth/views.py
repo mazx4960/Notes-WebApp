@@ -9,12 +9,11 @@ Copyright (C) 2019 DesmondTan
 ###########
 
 from flask import (
-    request, render_template, redirect, session, flash, url_for
+    request, render_template, redirect, session, flash, url_for, make_response
 )
 from . import auth
 from .forms import LoginForm, SignUpForm
-from ..utils.functions import generate_password_hash, datetime
-from ..utils.functions import add_new_user, check_user_exist
+from ..utils.functions import *
 from ..models import db, User
 
 
@@ -23,9 +22,25 @@ from ..models import db, User
 #########
 
 
+def login_user(user_id, username):
+    session['username'] = username
+    session['user_id'] = user_id
+    update_last_login(user_id)
+
+    response = make_response(redirect(url_for('main.today')))
+    response.set_cookie(key='user_id', value=str(user_id), max_age=24 * 60 * 60)
+    response.set_cookie(key='username', value=username, max_age=24 * 60 * 60)
+    return response
+
+
 @auth.route('/login/', methods=('GET', 'POST'))
 def login():
     """Login Page"""
+    if request.cookies.get('user_id') and request.cookies.get('username'):
+        session['user_id'] = request.cookies.get('user_id')
+        session['username'] = request.cookies.get('username')
+        update_last_login(session['user_id'])
+        return render_template('main/index.html', username=session['username'])
 
     login_form = LoginForm()
     if login_form.validate_on_submit():
@@ -34,10 +49,8 @@ def login():
         user_id = check_user_exist(username, password)
 
         if user_id:
-            session['username'] = username
-            session['user_id'] = user_id
-            # TODO: add cookies to user's browser
-            return redirect(url_for('main.today'))
+            response = login_user(user_id, username)
+            return response
         else:
             flash('Username/Password Incorrect!')
     return render_template('auth/login.html', form=login_form)
@@ -57,11 +70,8 @@ def signup():
         add_new_user(username, email, password_hash, date_created)
 
         user_id = check_user_exist(username, password_hash)
-        session['username'] = username
-        session['user_id'] = user_id
-        # TODO: add cookies to user's browser
-
-        return redirect(url_for('main.today'))
+        response = login_user(user_id, username)
+        return response
 
     return render_template('auth/signup.html', form=signup_form)
 
@@ -70,6 +80,13 @@ def signup():
 def logout():
     """Logging out"""
 
+    response = make_response(redirect(url_for('auth.login')))
+
+    if request.cookies.get('user_id'):
+        response.set_cookie(key='user_id', value=str(session['user_id']), max_age=0)
+        response.set_cookie(key='username', value=session['username'], max_age=0)
+
     session['username'] = None
     session['user_id'] = None
-    return login()
+
+    return response

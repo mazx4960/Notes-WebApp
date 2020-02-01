@@ -24,16 +24,19 @@
                     <div class="card-body">
                         <h3 class="card-title"><b>Note Title: </b>{{ note.title }}</h3>
 
-                        <a href="/notes/edit/{{ note.id }}/" class="pull-left">
-                            <button type="button" class="btn btn-info">
-                                <span class="glyphicon glyphicon-edit"></span> Edit
-                            </button>
-                        </a>
-                        <a href="/notes/delete/{{ note.id }}/" class="pull-right">
-                            <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span> Delete
-                            </button>
-                        </a>
+                        {% if can_edit %}
+                            <a href="/notes/edit/{{ note.id }}/" class="pull-left">
+                                <button type="button" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                </button>
+                            </a>
+                            <a href="/notes/delete/{{ note.id }}/" class="pull-right">
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span> Delete
+                                </button>
+                            </a>
+                        {% endif %}
+
                         <p class="card-text">
                             {{ note.body_markdown }}
                         </p>

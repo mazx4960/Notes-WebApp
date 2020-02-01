@@ -2,6 +2,31 @@
 
 {% block body %}
 
+<div class="jumbotron">
+    <div class="container">
+        <h1>General Account settings</h1>
+        <hr>
+        <table class="table table-hover table-striped table-bordered" style="background-color: ghostwhite;">
+            <tr>
+                <td>Name</td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td>Date joined</td>
+                <td>{{ user.date_created | datetimeformat }}</td>
+            </tr>
+            <tr>
+                <td>Last login</td>
+                <td>{{ user.last_login | datetimeformat }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 <script>
     homelink = document.getElementById("profile").childNodes[1];
     homelink.className += " active";

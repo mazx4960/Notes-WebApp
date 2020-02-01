@@ -75,6 +75,13 @@ def update_note(note_id, private, parent_folder_id, title, body):
     db.session.commit()
 
 
+def update_last_login(user_id):
+    user = User.query.filter(User.id == user_id).first()
+
+    user.last_login = datetime.now()
+    db.session.commit()
+
+
 """ ############# Retrieving from database ############# """
 
 
@@ -111,6 +118,13 @@ def get_users_by_name(username):
     return list(users)
 
 
+def get_user_by_id(user_id):
+    """Getting all the users with username or has username as a substring"""
+
+    user = User.query.filter(User.id == user_id).first()
+    return user
+
+
 def get_notes_by_title(title):
     """Getting all the notes with title or has title as a substring"""
     notes = Notes.query.filter(Notes.title.contains(title)).all()
@@ -140,8 +154,8 @@ def get_folder_names_ids(user_id):
     return folders
 
 
-def flatten_2d_list(list):
-    return reduce(lambda a, b: a+b, list)
+def flatten_2d_list(lst):
+    return reduce(lambda a, b: a+b, lst)
 
 
 """ ############# Validation functions ############# """
@@ -169,12 +183,11 @@ def validate_access_to_note(note_id, user_id):
     if note.private:
         note_permission = Notes_Permissions.query.filter(
             and_(
-                Notes_Permissions.note_id==note_id,
-                Notes_Permissions.user_id==user_id
+                Notes_Permissions.note_id == note_id,
+                Notes_Permissions.user_id == user_id
             )
         ).all()
         if note_permission is None:
             return False
 
     return True
-

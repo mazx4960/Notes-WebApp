@@ -17,10 +17,7 @@ from flask import (
 from .forms import AddNoteForm, SearchForm
 
 from ..utils.decorators import login_required
-from ..utils.functions import (
-    add_new_note, update_note, delete_note_by_id, get_notes, get_note_by_id,
-    validate_access_to_note, get_folder_names_ids, get_search_result
-)
+from ..utils.functions import *
 
 
 #########
@@ -101,7 +98,8 @@ def view_note(note_id):
 
     if validate_access_to_note(note_id, session['user_id']):
         note = get_note_by_id(note_id)
-        return render_template('main/view_note.html', note=note, username=session['username'])
+        can_edit = (note.user_id == session['user_id'])
+        return render_template('main/view_note.html', note=note, can_edit=can_edit, username=session['username'])
     else:
         return abort(403)
 
@@ -175,4 +173,5 @@ def delete_note(note_id):
 def profile():
     """Profile Page"""
 
-    return render_template('main/profile.html', username=session['username'])
+    user = get_user_by_id(session['user_id'])
+    return render_template('main/profile.html', username=session['username'], user=user)
