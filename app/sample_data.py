@@ -8,18 +8,26 @@ Copyright (C) 2019 DesmondTan
 # Imports #
 ###########
 
-from app.models import db
 from app.models import User, Followers, Notes, Folders, Notes_Permissions, Notes_tag, Tags
 
 from datetime import datetime
 from werkzeug.security import generate_password_hash
 
+#############
+# Functions #
+#############
 
-def init_db():
-    db.create_all()
+
+def add_sample_data(db):
+    data = get_sample_data()
+    for single_data in data:
+        db.session.add(single_data)
+    db.session.commit()
 
 
-def add_sample_data():
+def get_sample_data():
+
+    data = []
 
     ################# Users #################
 
@@ -45,11 +53,9 @@ def add_sample_data():
         last_login=datetime.now()
     )
 
-    db.session.add(test)
-    db.session.add(guest)
-    db.session.add(mazx)
-
-    db.session.commit()
+    data.append(test)
+    data.append(guest)
+    data.append(mazx)
 
     ################# Followers #################
 
@@ -59,9 +65,7 @@ def add_sample_data():
         followed=2
     )
 
-    db.session.add(test_follow_guest)
-
-    db.session.commit()
+    data.append(test_follow_guest)
 
     ################# Notes #################
 
@@ -87,10 +91,8 @@ def add_sample_data():
         user_id=2
     )
 
-    db.session.add(test_note)
-    db.session.add(guest_note)
-
-    db.session.commit()
+    data.append(test_note)
+    data.append(guest_note)
 
     ################# Folders #################
 
@@ -104,10 +106,8 @@ def add_sample_data():
         user_id=2
     )
 
-    db.session.add(test_folder)
-    db.session.add(guest_folder)
-
-    db.session.commit()
+    data.append(test_folder)
+    data.append(guest_folder)
 
     ################# Notes_Permissions #################
 
@@ -117,9 +117,7 @@ def add_sample_data():
         user_id=3
     )
 
-    db.session.add(test_note_allow_mazx)
-
-    db.session.commit()
+    data.append(test_note_allow_mazx)
 
     ################# Notes_tag #################
 
@@ -133,10 +131,8 @@ def add_sample_data():
         tag_id=2
     )
 
-    db.session.add(test_note_test_tag)
-    db.session.add(guest_note_guest_tag)
-
-    db.session.commit()
+    data.append(test_note_test_tag)
+    data.append(guest_note_guest_tag)
 
     ################# Tags #################
 
@@ -150,7 +146,10 @@ def add_sample_data():
         tag='guesttag'
     )
 
-    db.session.add(test_tag)
-    db.session.add(guest_tag)
+    data.append(test_tag)
+    data.append(guest_tag)
 
-    db.session.commit()
+    ########################################
+
+    return data
+

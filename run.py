@@ -33,12 +33,12 @@ def main():
     if args.environment == 'development':
         # DEVELOPMENT (Internal-facing)
         app_instance = app.create_app(init=init)
-        app_instance.run(host='127.0.0.1', port=5000)
+        app_instance.run(host='127.0.0.1', port=5000, use_reloader=False)
 
     elif args.environment == 'production':
         # PRODUCTION (External-facing)
         app_instance = app.create_app(environment='production', init=init)
-        app_instance.run(host='0.0.0.0', port=5000)
+        app_instance.run(host='0.0.0.0', port=5000, use_reloader=False)
 
     else:
         print('Invalid option')

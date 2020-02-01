@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8bbee56-5b6f-40d4-aed8-725a7731dc1a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/notes.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/main/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/main/view_note.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/view_note.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/notes.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/sample_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/sample_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/instance/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,18 +67,31 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Notes-WebApp\app\templates\main" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Nodes-Web\instance" />
       <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Notes-WebApp\app" />
       <recent name="C:\Users\Mazx\Documents\Projects\DT Projects\Notes-WebApp\app\templates\main" />
       <recent name="C:\Users\Mazx\Documents\Projects\DT Projects\Notes-WebApp\app\static\js" />
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Notes-WebApp\app\templates\main" />
-    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Notes-WebApp" type="Python.FlaskServer">
@@ -125,6 +140,7 @@
       <workItem from="1579969007327" duration="6108000" />
       <workItem from="1580048746797" duration="5394000" />
       <workItem from="1580474070340" duration="5845000" />
+      <workItem from="1580524814521" duration="3295000" />
     </task>
     <servers />
   </component>
