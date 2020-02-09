@@ -71,8 +71,19 @@ def my_notes():
         return redirect(url_for('main.search_results', search=search, category=category))
 
     notes = get_notes(session['user_id'])
-    notes.sort(key=lambda note: note.last_edited, reverse=True)
-    return render_template('main/my_notes.html', form=search_form, notes=notes, username=session['username'])
+    usernames = get_usernames()
+    folders = get_folder_names_ids(session['user_id'])
+    notes_sorted_by_folders = sort_notes_into_folders(notes, folders)
+    folder_names = sorted(notes_sorted_by_folders.keys())
+
+    return render_template(
+        'main/my_notes.html',
+        form=search_form,
+        usernames=usernames,
+        folder_names=folder_names,
+        notes=notes_sorted_by_folders,
+        username=session['username']
+    )
 
 
 @main.route('/search_results/?search=<search>&category=<category>')
@@ -83,10 +94,12 @@ def search_results(search, category):
     search_form = SearchForm()
 
     results = get_search_result(search, category, session['user_id'])
+    usernames = get_usernames()
 
     return render_template('main/search_results.html',
                            form=search_form,
                            results=results,
+                           usernames=usernames,
                            category=category,
                            username=session['username'])
 
@@ -98,7 +111,7 @@ def view_note(note_id):
 
     if validate_access_to_note(note_id, session['user_id']):
         note = get_note_by_id(note_id)
-        can_edit = (note.user_id == session['user_id'])
+        can_edit = (note.user_id == int(session['user_id']))
         return render_template('main/view_note.html', note=note, can_edit=can_edit, username=session['username'])
     else:
         return abort(403)
@@ -134,9 +147,13 @@ def edit_note(note_id):
     edit_note_form = AddNoteForm()
 
     note = get_note_by_id(note_id)
+    if note.user_id != int(session['user_id']):
+        return abort(403)
 
     user_folders = get_folder_names_ids(session['user_id'])
+    edit_note_form.private.default = 'on' if note.private else 'off'
     edit_note_form.folder.choices += user_folders
+    edit_note_form.folder.default = note.parent_folder_id
     edit_note_form.note.data = note.body
     edit_note_form.title.data = note.title
 

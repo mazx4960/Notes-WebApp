@@ -24,12 +24,15 @@ from app.models import User
 
 class AddNoteForm(FlaskForm):
     """Add Note Form"""
+    private_radio_style = {
+        'style': 'list-style: none; margin: 0; padding: 0;'
+    }
 
     title = StringField('Note Title:', [required("Please enter a note title.")])
     note = PageDownField('Your Note:', [required('Please enter notes contents.')])
     # tags = SelectMultipleField('Note Tags:')
-    private = RadioField('Private:', choices=[('on', 'on'), ('off', 'off')])
-    folder = SelectField('Folder:', choices=[('0', 'All')], default=('0', 'All'))
+    private = RadioField('Private:', choices=[('on', 'on'), ('off', 'off')], render_kw=private_radio_style)
+    folder = SelectField('Folder:', choices=[('0', 'All')], default='0')
     submit = SubmitField('Add Note')
 
 
@@ -41,4 +44,4 @@ class SearchForm(FlaskForm):
     ]
 
     search = StringField("Search Note/Users", [required("Unable to search empty string.")])
-    category = SelectField('Category', choices=choices)
+    category = SelectField('Category', choices=choices, default='Notes')

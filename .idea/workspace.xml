@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8bbee56-5b6f-40d4-aed8-725a7731dc1a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Notes-WebApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/errors/302.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/errors/503.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/notes.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/errors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/notes.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/sample_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/sample_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/instance/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main/my_notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/my_notes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main/search_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/search_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main/view_note.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main/view_note.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/instance/config.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,21 +70,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/templates/errors" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Notes-WebApp\app\templates\main" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Nodes-Web\instance" />
       <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Notes-WebApp\app" />
       <recent name="C:\Users\Mazx\Documents\Projects\DT Projects\Notes-WebApp\app\templates\main" />
       <recent name="C:\Users\Mazx\Documents\Projects\DT Projects\Notes-WebApp\app\static\js" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Nodes-Web\app\templates\errors" />
+      <recent name="C:\Users\Mazx\Desktop\Projects\DT Projects\Notes-WebApp\app\templates\main" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -141,6 +148,10 @@
       <workItem from="1580048746797" duration="5394000" />
       <workItem from="1580474070340" duration="5845000" />
       <workItem from="1580524814521" duration="3295000" />
+      <workItem from="1580570399715" duration="1823000" />
+      <workItem from="1581130329364" duration="3524000" />
+      <workItem from="1581146461689" duration="7982000" />
+      <workItem from="1581231824158" duration="6600000" />
     </task>
     <servers />
   </component>

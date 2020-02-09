@@ -16,43 +16,36 @@
 
         <form action="{{ url_for("main.my_notes") }}" method="POST">
             {{ form.csrf_token }}
-            <div class="form-row" style="padding: 2%">
-                <div class="form-group col-md-10">
+            <div class="form-row">
+                <div class="form-group col-md-9">
                     {{ form.search(class="form-control no_borders", placeholder="Search Note/Users") }}
                 </div>
                 <div class="form-group col-md-2">
                     {{ form.category(class="form-control no_borders") }}
                 </div>
+                <input class="form-group col-md-1 btn btn-primary" type="submit" value="Submit">
             </div>
-            <input type="submit" style="height: 0; width: 0; border: none; padding: 0;" hidefocus="true">
+            <input type="submit" style="height: 0; width: 0; border: none; padding: 0;">
         </form>
 
         {% if results != [] %}
             {% if category == 'Notes' %}
-                <table class="table table-hover table-striped table-bordered" style="background-color: white;">
-                    <thead class="text-center">
-                        <tr>
-                            <th class="text-center">#</th>
-                            <th>Note Title</th>
-                            <th>Note Saved on</th>
-                            <th>Tags</th>
-                            <th class="text-center">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for result in results %}
-                            <tr>
-                                <td class="text-center">{{ loop.index }}</td>
-                                <td> <a href="/notes/{{ result.id }}/">{{ result.title }}</a></td>
-                                <td>{{ result.last_edited | datetimeformat }}</td>
-                                <td></td>
-                                <td class="text-center">
-                                    <a href="/notes/delete/{{ result.id }}/">delete</a>
-                                </td>
-                            </tr>
-                        {%  endfor %}
-                    </tbody>
-                </table>
+                <div class="list-group">
+                    {% for note in results %}
+                        <a href="/notes/{{ note.id }}/" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">{{ note.title }}</h4>
+                                <h6>{{ note.last_edited | datetimeformat }}</h6>
+                            </div>
+                            {% if note.body | length <= 150 %}
+                                <p class="mb-1">{{ note.body }}</p>
+                            {% else %}
+                                <p class="mb-1">{{ note.body[:150] }}...</p>
+                            {% endif %}
+                            <small><i>Made by: {{ usernames[note.user_id] }}</i></small>
+                        </a><br>
+                    {% endfor %}
+                </div>
             {% elif  category == 'Users' %}
                 <table class="table table-hover table-striped table-bordered" style="background-color: white;">
                     <thead class="text-center">

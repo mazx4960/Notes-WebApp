@@ -31,6 +31,8 @@ def create_app(environment=None, init=False):
     """Factory method to create app instance"""
 
     app = Flask(__name__, instance_relative_config=True)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     from app.models import db
     db.init_app(app)

@@ -6,24 +6,27 @@
     <div class="container">
     {% if username %}
         <div class="row" style="padding-top: 2%">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="card mb-4 box-shadow">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div class="card mb-2 box-shadow">
                     <div class="card-body">
                         <h3 class="card-title"><b>Note Details:</b></h3>
-                        <p class="card-text">
-                            <h6><b>Note Added on:</b><br>{{ note.date_created | datetimeformat }}</h6>
-                            <h6><b>Note Updated on:</b><br>{{ note.last_edited | datetimeformat }}</h6>
-                            <h6><b>Private:</b>  {{ note.private }}</h6>
-                        </p>
                     </div>
                 </div>
             </div> <!-- ./column -->
 
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <div class="card mb-8 box-shadow">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="card mb-10 box-shadow">
                     <div class="card-body">
                         <h3 class="card-title"><b>Note Title: </b>{{ note.title }}</h3>
-
+                        <p class="card-text">
+                            <small><i>
+                                <b>Added on: </b>{{ note.date_created | datetimeformat("%d %b %Y") }}.
+                                <b>Last Updated: </b>{{ note.last_edited | datetimeformat("%d %b %Y") }}.
+                                {% if note.private %}
+                                    *Only you can view this note
+                                {% endif %}
+                            </i></small>
+                        </p>
                         {% if can_edit %}
                             <a href="/notes/edit/{{ note.id }}/" class="pull-left">
                                 <button type="button" class="btn btn-info">

@@ -97,12 +97,12 @@ def get_sample_data():
     ################# Folders #################
 
     test_folder = Folders(
-        folder_name='test_folder',
+        folder_name='Test Folder',
         user_id=1
     )
 
     guest_folder = Folders(
-        folder_name='guest_folder',
+        folder_name='Guest Folder',
         user_id=2
     )
 

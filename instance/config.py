@@ -7,8 +7,7 @@ class Config(object):
     # CSRF_ENABLED = True
 
     # Database configurations
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///notes.db'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DATABASE_URI = 'sqlite:///notes.db'
 
     # Email Configurations
     MAIL_SERVER = 'smtp.googlemail.com'

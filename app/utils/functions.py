@@ -95,6 +95,7 @@ def get_search_result(search, category, user_id):
         # The note must either be yours or public
         notes = get_notes_by_title(search)
         sieved_notes = sieve_public_notes(notes, user_id)
+        sieved_notes.sort(key=lambda note: note.last_edited, reverse=True)
         return sieved_notes
     return []
 
@@ -106,10 +107,24 @@ def sieve_public_notes(notes, user_id):
     for note in notes:
         if not note.private:
             sieved_notes.append(note)
-        elif note.user_id == user_id:
+        elif note.user_id == int(user_id):
             sieved_notes.append(note)
     return sieved_notes
 
+
+def get_usernames():
+    """
+    Returns a dictionary of all the username in the data base with their
+    user_id as the key and the username as the value
+
+    :return: dictionary of username
+    """
+    users = User.query.all()
+
+    usernames = {}
+    for user in users:
+        usernames[user.id] = user.username
+    return usernames
 
 def get_users_by_name(username):
     """Getting all the users with username or has username as a substring"""
@@ -191,3 +206,47 @@ def validate_access_to_note(note_id, user_id):
             return False
 
     return True
+
+
+""" ############# Miscellaneous functions ############# """
+
+
+def sort_notes_into_folders(notes, folders):
+    """
+    sorts notes into a dictionary with the folder names as the key
+
+    :param notes:
+        A list of notes objects
+    :param folders:
+        a list of tuples with each tuple holding (folder_id, folder_name)
+    :return:
+        a dictionary with all the notes, sorted into their folders as well
+        as a all key which stores all the notes
+
+    Note 1: the values in the keys is a list of note objects that is correlated
+    to the folder name
+
+    Eg. {
+        'test_folder': [Note_obj_1, Note_obj_2, ...],
+        'all': [all_note_objs]
+    }
+    """
+
+    # so that when the note gets appended to the dictionary, it will already be sorted
+    notes.sort(key=lambda note: note.last_edited, reverse=True)
+    folders = dict(folders)
+    notes_sorted_by_folders = {'All':[]}
+
+    # to store all the folder_names even when it has no notes
+    for folder_id in folders:
+        folder_name = folders[folder_id]
+        notes_sorted_by_folders.setdefault(folder_name, [])
+
+    for note in notes:
+        if note.parent_folder_id != 0: # note has a folder
+            folder_name = folders[str(note.parent_folder_id)]
+            notes_sorted_by_folders[folder_name].append(note)
+
+        notes_sorted_by_folders['All'].append(note)
+
+    return notes_sorted_by_folders

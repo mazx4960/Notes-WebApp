@@ -44,4 +44,14 @@ def internal_server_error(e):
         response = jsonify({'error': 'internal server error'})
         response.status_code = 500
         return response
-    return render_template('errors/500.html'), 500
+    return render_template('errors/500.html'), 500\
+
+
+@main.app_errorhandler(503)
+def service_unavailable(e):
+    if request.accept_mimetypes.accept_json and \
+            not request.accept_mimetypes.accept_html:
+        response = jsonify({'error': 'service unavailable'})
+        response.status_code = 503
+        return response
+    return render_template('errors/503.html'), 503

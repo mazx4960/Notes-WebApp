@@ -66,6 +66,8 @@ def signup():
         password_hash = generate_password_hash(request.form['password'])
         email = request.form['email']
         date_created = datetime.now()
+
+        # TODO: fix the sign up form error
         # TODO: use a web token to verify his email before adding him
         add_new_user(username, email, password_hash, date_created)
 

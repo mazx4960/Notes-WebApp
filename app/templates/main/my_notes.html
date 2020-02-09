@@ -16,47 +16,59 @@
 
         <form action="{{ url_for("main.my_notes") }}" method="POST">
             {{ form.csrf_token }}
-            <div class="form-row" style="padding: 2%">
-                <div class="form-group col-md-10">
+            <div class="form-row">
+                <div class="form-group col-md-9">
                     {{ form.search(class="form-control no_borders", placeholder="Search Note/Users") }}
                 </div>
                 <div class="form-group col-md-2">
                     {{ form.category(class="form-control no_borders") }}
                 </div>
+                <input class="form-group col-md-1 btn btn-primary" type="submit" value="Submit">
             </div>
             <input type="submit" style="height: 0; width: 0; border: none; padding: 0;" hidefocus="true">
         </form>
 
-        {% if notes != [] %}
-            <table class="table table-hover table-striped table-bordered" style="background-color: white;">
-                <thead class="text-center">
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th>Note Title</th>
-                        <th>Note Saved on</th>
-                        <th>Tags</th>
-                        <th class="text-center">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for note in notes %}
-                        <tr>
-                            <td class="text-center">{{ loop.index }}</td>
-                            <td> <a href="/notes/{{ note.id }}/">{{ note.title }}</a></td>
-                            <td>{{ note.last_edited | datetimeformat }}</td>
-                            <td></td>
-                            <td class="text-center">
-                                <a href="/notes/delete/{{ note.id }}/">delete</a>
-                            </td>
-                        </tr>
-                    {%  endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <div class="alert alert-danger">
-                You have no notes added! Let's add one <a href="/notes/add/">here</a>
+        <div class="panel-group" id="accordion">
+
+            {% for folder_name in folder_names %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#{{ folder_name.replace(' ','_') }}" style="text-decoration: none">
+                        <h3>{{ folder_name }}</h3></a>
+                    </h4>
+                </div>
+
+                <div id="{{ folder_name.replace(' ','_') }}" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        {% if notes[folder_name] != [] %}
+                            <div class="list-group">
+                                {% for note in notes[folder_name] %}
+                                    <a href="/notes/{{ note.id }}/" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h4 class="mb-1">{{ note.title }}</h4>
+                                            <h6>{{ note.last_edited | datetimeformat }}</h6>
+                                        </div>
+                                        {% if note.body | length <= 150 %}
+                                            <p class="mb-1">{{ note.body }}</p>
+                                        {% else %}
+                                            <p class="mb-1">{{ note.body[:150] }}...</p>
+                                        {% endif %}
+                                        <small><i>Made by: {{ usernames[note.user_id] }}</i></small>
+                                    </a><br>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger">
+                                You have no notes added! Let's add one <a href="/notes/add">here</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-        {% endif %}
+            {% endfor %}
+        </div>
+
     {% endif %}
     </div>
 </div>
